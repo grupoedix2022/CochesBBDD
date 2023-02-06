@@ -1,0 +1,23 @@
+CREATE TABLE coches( 
+id int(11) NOT NULL AUTO_INCREMENT,
+matricula (7) NOT NULL UNIQUE, 
+marca varchar(20) DEFAULT NULL, 
+modelo varchar(20) (3) DEFAULT NULL, 
+color varchar(20) DEFAULT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE pasajeros( 
+id int(11) NOT NULL AUTO_INCREMENT, 
+nombre varchar(45) DEFAULT NULL, 
+edad int(3) DEFAULT NULL, 
+peso double DEFAULT NULL,
+cocheid int(11) DEFAULT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (cocheid) REFERENCES coches(id)
+);
+
+
+
+ALTER TABLE `pasajeros` DROP FOREIGN KEY `pasajeros_ibfk_1`; 
+ALTER TABLE `pasajeros` ADD CONSTRAINT `pasajeros_ibfk_1` FOREIGN KEY (`cocheid`) REFERENCES `coches`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
